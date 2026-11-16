@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "217673991832",
+    "project_id": "beauty-salon-amare-uiy3r6",
+    "storage_bucket": "beauty-salon-amare-uiy3r6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217673991832:android:d15df56a612ce8e159b2ed",
+        "android_client_info": {
+          "package_name": "com.mycompany.beautysalonamare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3eHGdHSjeDGkbh3OQpptcoXVn6j5n7yQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
