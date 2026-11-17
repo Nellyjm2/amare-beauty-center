@@ -34,6 +34,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     _model.contrasenaTextController ??= TextEditingController();
     _model.contrasenaFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -442,7 +444,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           }
 
                           context.goNamedAuth(
-                              HomePageWidget.routeName, context.mounted);
+                              AdminDashboardWidget.routeName, context.mounted);
                         },
                         text: '\tIniciar sesión',
                         options: FFButtonOptions(

@@ -38,6 +38,8 @@ class _RegistroWidgetState extends State<RegistroWidget> {
 
     _model.cContrasenaTextController ??= TextEditingController();
     _model.cContrasenaFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -592,7 +594,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                               ));
 
                           context.goNamedAuth(
-                              HomePageWidget.routeName, context.mounted);
+                              AdminDashboardWidget.routeName, context.mounted);
                         },
                         text: 'Registrarse',
                         options: FFButtonOptions(
