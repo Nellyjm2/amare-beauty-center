@@ -3,6 +3,7 @@ import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'admin_dashboard_model.dart';
@@ -252,11 +253,12 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget> {
                           ),
                         ),
                         Expanded(
-                          child: FutureBuilder<int>(
-                            future: queryUsersRecordCount(
-                              queryBuilder: (usersRecord) => usersRecord.where(
-                                'rol',
-                                isEqualTo: 'client',
+                          child: StreamBuilder<List<AppointmentsRecord>>(
+                            stream: queryAppointmentsRecord(
+                              queryBuilder: (appointmentsRecord) =>
+                                  appointmentsRecord.where(
+                                'status',
+                                isNotEqualTo: 'Cancelada',
                               ),
                             ),
                             builder: (context, snapshot) {
@@ -274,7 +276,9 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget> {
                                   ),
                                 );
                               }
-                              int containerCount = snapshot.data!;
+                              List<AppointmentsRecord>
+                                  containerAppointmentsRecordList =
+                                  snapshot.data!;
 
                               return Container(
                                 width: 100.0,
@@ -329,7 +333,16 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 30.0, 0.0, 10.0),
                                       child: Text(
-                                        containerCount.toString(),
+                                        formatNumber(
+                                          functions.calculateTotalRevenue(
+                                              containerAppointmentsRecordList
+                                                  .map((e) => e.priceSnapshot)
+                                                  .toList()),
+                                          formatType: FormatType.decimal,
+                                          decimalType:
+                                              DecimalType.periodDecimal,
+                                          currency: '\$',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -364,100 +377,130 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget> {
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 100.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF1A1A1A),
-                          borderRadius: BorderRadius.circular(16.0),
+                      child: FutureBuilder<int>(
+                        future: queryUsersRecordCount(
+                          queryBuilder: (usersRecord) => usersRecord.where(
+                            'rol',
+                            isEqualTo: 'client',
+                          ),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    (FFMainAxisAlignment.spaceBetween)
-                                        .flutterValue,
-                                children: [
-                                  Text(
-                                    'Total Clientes Activos',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          95.0, 20.0, 15.0, 0.0),
-                                      child: Icon(
-                                        Icons.people_sharp,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        size: 50.0,
+                                ),
+                              ),
+                            );
+                          }
+                          int containerCount = snapshot.data!;
+
+                          return Container(
+                            width: double.infinity,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF1A1A1A),
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        (FFMainAxisAlignment.spaceBetween)
+                                            .flutterValue,
+                                    children: [
+                                      Text(
+                                        'Total Clientes Activos',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Hello World',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight: FontWeight.w800,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  95.0, 20.0, 15.0, 0.0),
+                                          child: Icon(
+                                            Icons.people_sharp,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            size: 50.0,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 25.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w800,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
                                         ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        containerCount.toString(),
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.w800,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 25.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w800,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          );
+                        },
                       ),
                     ),
                   ),
