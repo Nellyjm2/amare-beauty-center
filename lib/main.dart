@@ -151,7 +151,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Inicio': InicioWidget(),
-      'Agendar_cita': AgendarCitaWidget(),
+      'MisCitas': MisCitasWidget(),
       'fidelidad': FidelidadWidget(),
       'gestionCatalogoAdmin': GestionCatalogoAdminWidget(),
     };

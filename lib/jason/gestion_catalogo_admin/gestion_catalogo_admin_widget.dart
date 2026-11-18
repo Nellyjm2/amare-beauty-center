@@ -114,7 +114,7 @@ class _GestionCatalogoAdminWidgetState
                             alignment: AlignmentDirectional(1.0, 0.0),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  30.0, 0.0, 0.0, 0.0),
+                                  20.0, 0.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () {
                                   print('Button pressed ...');
@@ -275,8 +275,8 @@ class _GestionCatalogoAdminWidgetState
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 10.0),
                             child: Container(
-                              width: 100.0,
-                              height: 70.0,
+                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              height: MediaQuery.sizeOf(context).height * 0.1,
                               decoration: BoxDecoration(
                                 color: Color(0xFF171717),
                                 borderRadius: BorderRadius.circular(20.0),
@@ -286,6 +286,9 @@ class _GestionCatalogoAdminWidgetState
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    (FFMainAxisAlignment.spaceBetween)
+                                        .flutterValue,
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.all(8.0),
@@ -293,71 +296,86 @@ class _GestionCatalogoAdminWidgetState
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.network(
                                         'https://picsum.photos/seed/916/600',
-                                        width: 95.59,
-                                        height: 200.0,
+                                        width: 80.0,
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                0.8,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        (FFMainAxisAlignment.spaceBetween)
-                                            .flutterValue,
-                                    crossAxisAlignment:
-                                        (FFCrossAxisAlignment.start)
-                                            .flutterValue,
-                                    textBaseline: TextBaseline.alphabetic,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            listViewServicesRecord.name,
-                                            'Sin Nombre',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
+                                  Flexible(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            (FFMainAxisAlignment.spaceBetween)
+                                                .flutterValue,
+                                        crossAxisAlignment:
+                                            (FFCrossAxisAlignment.start)
+                                                .flutterValue,
+                                        textBaseline: TextBaseline.alphabetic,
+                                        children: [
+                                          Flexible(
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                listViewServicesRecord.name,
+                                                'Sin Nombre',
                                               ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 35.0),
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            formatNumber(
-                                              listViewServicesRecord.price,
-                                              formatType: FormatType.decimal,
-                                              decimalType:
-                                                  DecimalType.automatic,
-                                              currency: '₡',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    font: GoogleFonts.inter(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: Color(0xFFEAE8E8),
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
                                             ),
-                                            'Sin Precio',
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
+                                          Text(
+                                            valueOrDefault<String>(
+                                              formatNumber(
+                                                listViewServicesRecord.price,
+                                                formatType: FormatType.decimal,
+                                                decimalType:
+                                                    DecimalType.automatic,
+                                                currency: '₡',
+                                              ),
+                                              'Sin Precio',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.inter(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFFE0B728),
+                                                  letterSpacing: 0.0,
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -369,78 +387,62 @@ class _GestionCatalogoAdminWidgetState
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
-                                                color: Color(0xFFE0B728),
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        40.0, 0.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        context.pushNamed(
-                                          EditarCatalogoAdminWidget.routeName,
-                                          queryParameters: {
-                                            'eleccionUsuario': serializeParam(
-                                              listViewServicesRecord.reference,
-                                              ParamType.DocumentReference,
-                                            ),
-                                            'datosServicio': serializeParam(
-                                              listViewServicesRecord,
-                                              ParamType.Document,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            'datosServicio':
-                                                listViewServicesRecord,
-                                          },
-                                        );
-                                      },
-                                      child: Container(
-                                        width: 40.0,
-                                        height: 40.0,
-                                        decoration: BoxDecoration(
-                                          color: Color(0x00FFFFFF),
-                                        ),
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: FaIcon(
-                                            FaIconData(const IconData(
-                                                /* edit */ 0xf044,
-                                                fontFamily:
-                                                    'FontAwesomeRegular',
-                                                fontPackage:
-                                                    'font_awesome_flutter')),
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            size: 24.0,
                                           ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        EditarCatalogoAdminWidget.routeName,
+                                        queryParameters: {
+                                          'eleccionUsuario': serializeParam(
+                                            listViewServicesRecord.reference,
+                                            ParamType.DocumentReference,
+                                          ),
+                                          'datosServicio': serializeParam(
+                                            listViewServicesRecord,
+                                            ParamType.Document,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'datosServicio':
+                                              listViewServicesRecord,
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 48.0,
+                                      height: 48.0,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x00FFFFFF),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: FaIcon(
+                                          FaIconData(const IconData(
+                                              /* edit */ 0xf044,
+                                              fontFamily: 'FontAwesomeRegular',
+                                              fontPackage:
+                                                  'font_awesome_flutter')),
+                                          color: Color(0xFFC4C7CB),
+                                          size: 24.0,
                                         ),
                                       ),
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 0.0, 0.0, 0.0),
+                                        0.0, 0.0, 10.0, 0.0),
                                     child: Container(
-                                      width: 40.0,
-                                      height: 40.0,
+                                      width: 48.0,
+                                      height: 48.0,
                                       decoration: BoxDecoration(
                                         color: Color(0x00FFFFFF),
                                       ),
@@ -453,8 +455,7 @@ class _GestionCatalogoAdminWidgetState
                                               fontFamily: 'FontAwesomeRegular',
                                               fontPackage:
                                                   'font_awesome_flutter')),
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
+                                          color: Color(0xFFC7CACE),
                                           size: 24.0,
                                         ),
                                       ),

@@ -111,16 +111,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: AgendarCitaWidget.routeName,
           path: AgendarCitaWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Agendar_cita')
-              : AgendarCitaWidget(
-                  servicioRef: params.getParam(
-                    'servicioRef',
-                    ParamType.DocumentReference,
-                    isList: false,
-                    collectionNamePath: ['services'],
-                  ),
-                ),
+          builder: (context, params) => AgendarCitaWidget(
+            servicioRef: params.getParam(
+              'servicioRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['services'],
+            ),
+          ),
         ),
         FFRoute(
           name: FidelidadWidget.routeName,
@@ -156,7 +154,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: MisCitasWidget.routeName,
           path: MisCitasWidget.routePath,
-          builder: (context, params) => MisCitasWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'MisCitas')
+              : MisCitasWidget(),
         ),
         FFRoute(
           name: CrearCatalogoAdminWidget.routeName,
