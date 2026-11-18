@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_modern_calendar.dart';
@@ -14,7 +15,7 @@ export 'agendar_cita_model.dart';
 class AgendarCitaWidget extends StatefulWidget {
   const AgendarCitaWidget({
     super.key,
-    required this.servicioRef,
+    this.servicioRef,
   });
 
   final DocumentReference? servicioRef;
@@ -567,8 +568,17 @@ class _AgendarCitaWidgetState extends State<AgendarCitaWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          _model.resultadoReserva = await actions.reservarCita(
+                            dateTimeFormat(
+                                "yyyy-MM-dd", _model.fechaSeleccionada),
+                            _model.horaSeleccionada!,
+                            widget.servicioRef!,
+                            currentUserReference!,
+                            currentUserDisplayName,
+                          );
+
+                          safeSetState(() {});
                         },
                         text: 'Confirmar reservación',
                         options: FFButtonOptions(

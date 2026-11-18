@@ -594,7 +594,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                               ));
 
                           context.goNamedAuth(
-                              AdminDashboardWidget.routeName, context.mounted);
+                              InicioWidget.routeName, context.mounted);
                         },
                         text: 'Registrarse',
                         options: FFButtonOptions(

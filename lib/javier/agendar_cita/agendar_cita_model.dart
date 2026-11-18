@@ -31,6 +31,8 @@ class AgendarCitaModel extends FlutterFlowModel<AgendarCitaWidget> {
   DateTime? calendarSelectedDay;
   // Stores action output result for [Custom Action - consultarHorariosDisponibles] action in Calendar widget.
   List<String>? resultadoHorarios;
+  // Stores action output result for [Custom Action - reservarCita] action in Button widget.
+  String? resultadoReserva;
 
   @override
   void initState(BuildContext context) {}

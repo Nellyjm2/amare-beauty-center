@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -60,6 +61,26 @@ class AppointmentsRecord extends FirestoreRecord {
   DateTime? get date => _date;
   bool hasDate() => _date != null;
 
+  // "date_key" field.
+  String? _dateKey;
+  String get dateKey => _dateKey ?? '';
+  bool hasDateKey() => _dateKey != null;
+
+  // "start_minute" field.
+  int? _startMinute;
+  int get startMinute => _startMinute ?? 0;
+  bool hasStartMinute() => _startMinute != null;
+
+  // "duration_minutes_snapshot" field.
+  int? _durationMinutesSnapshot;
+  int get durationMinutesSnapshot => _durationMinutesSnapshot ?? 0;
+  bool hasDurationMinutesSnapshot() => _durationMinutesSnapshot != null;
+
+  // "slot_ids" field.
+  List<String>? _slotIds;
+  List<String> get slotIds => _slotIds ?? const [];
+  bool hasSlotIds() => _slotIds != null;
+
   void _initializeFields() {
     _userRef = snapshotData['user_ref'] as DocumentReference?;
     _serviceRef = snapshotData['service_ref'] as DocumentReference?;
@@ -70,6 +91,11 @@ class AppointmentsRecord extends FirestoreRecord {
     _status = snapshotData['status'] as String?;
     _timeSlot = snapshotData['time_slot'] as String?;
     _date = snapshotData['date'] as DateTime?;
+    _dateKey = snapshotData['date_key'] as String?;
+    _startMinute = castToType<int>(snapshotData['start_minute']);
+    _durationMinutesSnapshot =
+        castToType<int>(snapshotData['duration_minutes_snapshot']);
+    _slotIds = getDataList(snapshotData['slot_ids']);
   }
 
   static CollectionReference get collection =>
@@ -115,6 +141,9 @@ Map<String, dynamic> createAppointmentsRecordData({
   String? status,
   String? timeSlot,
   DateTime? date,
+  String? dateKey,
+  int? startMinute,
+  int? durationMinutesSnapshot,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -127,6 +156,9 @@ Map<String, dynamic> createAppointmentsRecordData({
       'status': status,
       'time_slot': timeSlot,
       'date': date,
+      'date_key': dateKey,
+      'start_minute': startMinute,
+      'duration_minutes_snapshot': durationMinutesSnapshot,
     }.withoutNulls,
   );
 
@@ -139,6 +171,7 @@ class AppointmentsRecordDocumentEquality
 
   @override
   bool equals(AppointmentsRecord? e1, AppointmentsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.userRef == e2?.userRef &&
         e1?.serviceRef == e2?.serviceRef &&
         e1?.userName == e2?.userName &&
@@ -147,7 +180,11 @@ class AppointmentsRecordDocumentEquality
         e1?.createdAt == e2?.createdAt &&
         e1?.status == e2?.status &&
         e1?.timeSlot == e2?.timeSlot &&
-        e1?.date == e2?.date;
+        e1?.date == e2?.date &&
+        e1?.dateKey == e2?.dateKey &&
+        e1?.startMinute == e2?.startMinute &&
+        e1?.durationMinutesSnapshot == e2?.durationMinutesSnapshot &&
+        listEquality.equals(e1?.slotIds, e2?.slotIds);
   }
 
   @override
@@ -160,7 +197,11 @@ class AppointmentsRecordDocumentEquality
         e?.createdAt,
         e?.status,
         e?.timeSlot,
-        e?.date
+        e?.date,
+        e?.dateKey,
+        e?.startMinute,
+        e?.durationMinutesSnapshot,
+        const ListEquality().hash(e?.slotIds)
       ]);
 
   @override
