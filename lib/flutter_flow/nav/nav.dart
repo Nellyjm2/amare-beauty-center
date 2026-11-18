@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -76,14 +78,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? AdminDashboardWidget() : LoginWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? AdminDashboardWidget()
-              : LoginWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
         ),
         FFRoute(
           name: AdminDashboardWidget.routeName,
@@ -99,6 +100,87 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: LoginWidget.routeName,
           path: LoginWidget.routePath,
           builder: (context, params) => LoginWidget(),
+        ),
+        FFRoute(
+          name: InicioWidget.routeName,
+          path: InicioWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Inicio')
+              : InicioWidget(),
+        ),
+        FFRoute(
+          name: AgendarCitaWidget.routeName,
+          path: AgendarCitaWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Agendar_cita')
+              : AgendarCitaWidget(
+                  servicioRef: params.getParam(
+                    'servicioRef',
+                    ParamType.DocumentReference,
+                    isList: false,
+                    collectionNamePath: ['services'],
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: FidelidadWidget.routeName,
+          path: FidelidadWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'fidelidad')
+              : FidelidadWidget(),
+        ),
+        FFRoute(
+          name: GestionCatalogoAdminWidget.routeName,
+          path: GestionCatalogoAdminWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'gestionCatalogoAdmin')
+              : GestionCatalogoAdminWidget(),
+        ),
+        FFRoute(
+          name: CatalogoWidget.routeName,
+          path: CatalogoWidget.routePath,
+          builder: (context, params) => CatalogoWidget(),
+        ),
+        FFRoute(
+          name: DetalleServicioWidget.routeName,
+          path: DetalleServicioWidget.routePath,
+          builder: (context, params) => DetalleServicioWidget(
+            serviceRef: params.getParam(
+              'serviceRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['services'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: MisCitasWidget.routeName,
+          path: MisCitasWidget.routePath,
+          builder: (context, params) => MisCitasWidget(),
+        ),
+        FFRoute(
+          name: CrearCatalogoAdminWidget.routeName,
+          path: CrearCatalogoAdminWidget.routePath,
+          builder: (context, params) => CrearCatalogoAdminWidget(),
+        ),
+        FFRoute(
+          name: EditarCatalogoAdminWidget.routeName,
+          path: EditarCatalogoAdminWidget.routePath,
+          asyncParams: {
+            'datosServicio': getDoc(['services'], ServicesRecord.fromSnapshot),
+          },
+          builder: (context, params) => EditarCatalogoAdminWidget(
+            eleccionUsuario: params.getParam(
+              'eleccionUsuario',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['services'],
+            ),
+            datosServicio: params.getParam(
+              'datosServicio',
+              ParamType.Document,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
