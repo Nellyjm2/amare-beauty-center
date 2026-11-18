@@ -166,78 +166,88 @@ class _GestionCatalogoAdminWidgetState
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 10.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Container(
-                        width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: 53.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF171717),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 18.0,
-                              color: Color(0x268A6A12),
-                              offset: Offset(
-                                0.0,
-                                6.0,
-                              ),
-                              spreadRadius: 1.0,
-                            )
-                          ],
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(EditarCatalogoAdminWidget.routeName);
+                      },
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 10.0,
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0),
-                          shape: BoxShape.rectangle,
-                          border: FlutterFlowStyledBorder(
-                            side: BorderSide(
-                              color: Color(0xFF8B6C14),
-                            ),
-                            style: FlutterFlowDashStyle.dashed,
-                            dashLength: 6.0,
-                            dashGap: 4.0,
-                          ),
                         ),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context
-                                .pushNamed(CrearCatalogoAdminWidget.routeName);
-                          },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment:
-                                (FFMainAxisAlignment.center).flutterValue,
-                            children: [
-                              Icon(
-                                Icons.add,
-                                color: Color(0xFFDDB52D),
-                                size: 24.0,
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: 53.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF171717),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 18.0,
+                                color: Color(0x268A6A12),
+                                offset: Offset(
+                                  0.0,
+                                  6.0,
+                                ),
+                                spreadRadius: 1.0,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(12.0),
+                            shape: BoxShape.rectangle,
+                            border: FlutterFlowStyledBorder(
+                              side: BorderSide(
+                                color: Color(0xFF8B6C14),
                               ),
-                              Text(
-                                'Agregar Nuevo Servicio',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.inter(
+                              style: FlutterFlowDashStyle.dashed,
+                              dashLength: 6.0,
+                              dashGap: 4.0,
+                            ),
+                          ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                  CrearCatalogoAdminWidget.routeName);
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment:
+                                  (FFMainAxisAlignment.center).flutterValue,
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  color: Color(0xFFDDB52D),
+                                  size: 24.0,
+                                ),
+                                Text(
+                                  'Agregar Nuevo Servicio',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: Color(0xFFDDB52D),
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                      color: Color(0xFFDDB52D),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

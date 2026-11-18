@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -183,8 +184,8 @@ class _EditarCatalogoAdminWidgetState extends State<EditarCatalogoAdminWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 0.0, 0.0),
                               child: FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  context.pushNamed(LoginWidget.routeName);
                                 },
                                 text: 'Cambiar Rol',
                                 options: FFButtonOptions(
@@ -948,8 +949,36 @@ class _EditarCatalogoAdminWidgetState extends State<EditarCatalogoAdminWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         80.0, 0.0, 0.0, 0.0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        await widget.eleccionUsuario!.update({
+                                          ...createServicesRecordData(
+                                            name: _model
+                                                .txtDescTextController.text,
+                                            description: _model
+                                                .txtNombreTextController.text,
+                                            category: _model.drpCategoriaValue,
+                                            price: double.tryParse(_model
+                                                .txtPriceTextController.text),
+                                            createdAt: currentUserDocument
+                                                ?.createdTime,
+                                            durationMinutes: int.tryParse(_model
+                                                .txtDurationTextController
+                                                .text),
+                                            isFeatured:
+                                                _model.switchFeaturedValue1,
+                                            isActive:
+                                                _model.switchFeaturedValue2,
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'image_url': FieldValue.delete(),
+                                            },
+                                          ),
+                                        });
+
+                                        context.pushNamed(
+                                            GestionCatalogoAdminWidget
+                                                .routeName);
                                       },
                                       text: 'Guardar',
                                       options: FFButtonOptions(
