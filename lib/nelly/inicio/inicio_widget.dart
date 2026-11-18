@@ -361,91 +361,47 @@ class _InicioWidgetState extends State<InicioWidget> {
                       return Container(
                         height: 45.0,
                         decoration: BoxDecoration(),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {},
-                          child: ListView(
-                            padding: EdgeInsets.fromLTRB(
-                              0.0,
-                              0,
-                              0,
-                              0,
-                            ),
-                            primary: false,
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF1A1A1A),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    border: Border.all(
-                                      color: Color(0xFF2A2A2A),
-                                      width: 1.0,
-                                    ),
+                        child: ListView(
+                          padding: EdgeInsets.fromLTRB(
+                            0.0,
+                            0,
+                            0,
+                            0,
+                          ),
+                          primary: false,
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Container(
+                                width: 100.0,
+                                height: 100.0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF1A1A1A),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  border: Border.all(
+                                    color: Color(0xFF2A2A2A),
+                                    width: 1.0,
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 10.0, 20.0, 10.0),
-                                    child: Text(
-                                      'Capilar',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 10.0, 20.0, 10.0),
+                                  child: Text(
+                                    'Capilar',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF1A1A1A),
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  border: Border.all(
-                                    color: Color(0xFF2A2A2A),
-                                    width: 1.0,
-                                  ),
-                                ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 10.0, 20.0, 10.0),
-                                  child: Text(
-                                    'Facial y Corporal',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
                                           color: Colors.white,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.bold,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -454,44 +410,79 @@ class _InicioWidgetState extends State<InicioWidget> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF1A1A1A),
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  border: Border.all(
-                                    color: Color(0xFF2A2A2A),
-                                    width: 1.0,
-                                  ),
+                            ),
+                            Container(
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF1A1A1A),
+                                borderRadius: BorderRadius.circular(20.0),
+                                border: Border.all(
+                                  color: Color(0xFF2A2A2A),
+                                  width: 1.0,
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 10.0, 20.0, 10.0),
-                                  child: Text(
-                                    'Manicura y Pedicura',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
+                              ),
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 10.0, 20.0, 10.0),
+                                child: Text(
+                                  'Facial y Corporal',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
                                           fontWeight: FontWeight.w500,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                  ),
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 12.0)),
-                          ),
+                            ),
+                            Container(
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF1A1A1A),
+                                borderRadius: BorderRadius.circular(20.0),
+                                border: Border.all(
+                                  color: Color(0xFF2A2A2A),
+                                  width: 1.0,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 10.0, 20.0, 10.0),
+                                child: Text(
+                                  'Manicura y Pedicura',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ].divide(SizedBox(width: 12.0)),
                         ),
                       );
                     },
